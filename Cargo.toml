@@ -7,14 +7,7 @@ readme = "README.md"
 license = "MIT"
 repository = "https://github.com/2teez/enums"
 documentation = "https://github.com/2teez/enums"
-keywords = [
-    "iterator",
-    "enumerate",
-    "ergonomic",
-    "index",
-    "indexing",
-    "utility",
-]
+keywords = ["iterator", "enumerate", "ergonomic", "index", "utility"]
 categories = ["data-structures", "rust-patterns"]
 edition = "2024"
 
