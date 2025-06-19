@@ -92,3 +92,31 @@ In the enums_start_at method, a tuple struct is also provided that can be used a
   use enums::enums::Starter
 ```
 Then starter, methods namely: default, new and Starter(usize), where `usize` is any positive value from `0` to `usize::MAX`, can be used to customized the starting index. [See examples on API below]
+
+## enums Methods
+
+`enums` trait uses three methods namely: `enums`, `enums_mut` and `enums_start_at`. The trait also uses associated type.
+
+These methods were implemented for vector and slice like so:
+
+1.  enums
+
+  > **_fn enums(&'a self) -> Vec<(usize, Self::Output)>_**
+  >
+  > - it iterates the collection on which is it called neatly without doing any chain linking.
+
+  ```
+    let langs = vec!["c", "c++", "zig-lang", "java", "rust"];
+    for (ind, lang) in langs.enums() {
+        print!("{:?} ", (ind, lang));
+    }
+  ```
+
+  > **_fn enums_mut(&'a mut self) -> Vec<(usize, Self::Output)>_**
+  >
+  > - it both iterates and modifies the collection on which is it called clearly.
+
+  ```
+
+
+  ```
