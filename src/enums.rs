@@ -17,25 +17,26 @@ pub trait Enums {
     type Output;
     fn enums(&self) -> Vec<(usize, Self::Output)>
     where
-        Self::Output: Clone + Copy;
+        Self::Output: Clone;
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>
     where
-        Self::Output: Clone + Copy;
-    fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)>
-    where
-        Self::Output: Clone + Copy;
+        Self::Output: Clone;
+    fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)>;
 }
 
-impl<T: Clone + Copy> Enums for Vec<T> {
+impl<T: Clone> Enums for Vec<T> {
     type Output = T;
     fn enums(&self) -> Vec<(usize, Self::Output)> {
-        self.iter().enumerate().map(|(i, &v)| (i, v)).collect()
+        self.iter()
+            .enumerate()
+            .map(|(i, v)| (i, v.clone()))
+            .collect()
     }
 
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)> {
         self.iter()
             .enumerate()
-            .map(|(i, &v)| (i + at.0, v))
+            .map(|(i, v)| (i + at.0, v.clone()))
             .collect()
     }
 
@@ -48,16 +49,19 @@ impl<T: Clone + Copy> Enums for Vec<T> {
     }
 }
 
-impl<T: Clone + Copy> Enums for [T] {
+impl<T: Clone> Enums for [T] {
     type Output = T;
     fn enums(&self) -> Vec<(usize, Self::Output)> {
-        self.iter().enumerate().map(|(i, &v)| (i, v)).collect()
+        self.iter()
+            .enumerate()
+            .map(|(i, v)| (i, v.clone()))
+            .collect()
     }
 
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)> {
         self.iter()
             .enumerate()
-            .map(|(i, &v)| (i + at.0, v))
+            .map(|(i, v)| (i + at.0, v.clone()))
             .collect()
     }
 
