@@ -101,7 +101,7 @@ These methods were implemented for vector and slice like so:
 
 1.  enums
 
-  > **_fn enums(&'a self) -> Vec<(usize, Self::Output)>_**
+  > **_fn enums(&self) -> Vec<(usize, Self::Output)>_**
   >
   > - it iterates the collection on which is it called neatly without doing any chain linking.
 
@@ -112,11 +112,50 @@ These methods were implemented for vector and slice like so:
     }
   ```
 
-  > **_fn enums_mut(&'a mut self) -> Vec<(usize, Self::Output)>_**
+2.  enums_mut
+
+  > **_fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)>_**
   >
   > - it both iterates and modifies the collection on which is it called clearly.
 
   ```
+let mut langs = vec![
+        String::from("c"),
+        String::from("c++"),
+        String::from("zig-lang"),
+        String::from("java"),
+        String::from("rust"),
+    ];
 
+    // Use enums_mut to get mutable indexed references
+    for (_i, lang) in langs.enums_mut() {
+        *lang = lang.to_uppercase();
+    }
+
+    println!("{:?}", langs); // prints ["C", "C++", "ZIG-LANG", "JAVA", "RUST"]
 
   ```
+
+  3. enums_start_at
+
+  > **_fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>_**
+  >
+  > - This method iterates, but can change the index start of a collection. That is, your
+      collection doesn't have to start from zero with the method `enums_start_at`.
+
+```
+
+    let langs = ["java", "ocalm", "odin", "c++"];
+    for (i, lang) in langs.enums_start_at(2.into()) {
+        println!("{}, {}", i, lang);
+    }
+
+  // prints
+  2, java
+  3, ocalm
+  4, odin
+  5, c++
+
+```
+
+> The method `enums_start_at` has a parameter namely: `Starter`. And it can be used in the method as `Starter::new()` or `Starter::default()` or `Starter(<any-positive-number>)` to `usize::MAX`. The index of the starts from the positive number.
