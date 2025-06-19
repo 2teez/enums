@@ -19,7 +19,9 @@ pub trait Enums {
     where
         Self::Output: Clone;
 
-    fn enums_iter(&self) -> Box<dyn Iterator<Item = (usize, &Self::Output)> + '_>;
+    fn enums_iter(&self) -> Box<dyn Iterator<Item = (usize, &Self::Output)> + '_>
+    where
+        Self::Output: std::fmt::Debug;
 
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>
     where
