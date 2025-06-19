@@ -21,7 +21,7 @@ pub trait Enums {
 
     fn enums_iter(&self) -> Box<dyn Iterator<Item = (usize, &Self::Output)> + '_>
     where
-        Self::Output: std::fmt::Debug;
+        Self::Output: std::fmt::Debug + std::fmt::Display;
 
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>
     where
