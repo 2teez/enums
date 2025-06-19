@@ -13,50 +13,60 @@ impl Default for Starter {
     }
 }
 
-pub trait Enums<'a> {
+pub trait Enums {
     type Output;
-    fn enums(&'a self) -> Vec<(usize, Self::Output)>
+    fn enums(&self) -> Vec<(usize, Self::Output)>
     where
-        Self::Output: Copy;
-    fn enums_start_at(&'a self, at: Starter) -> Vec<(usize, Self::Output)>
+        Self::Output: Clone + Copy;
+    fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>
     where
-        Self::Output: Copy;
-    fn enums_mut(&'a mut self) -> Vec<(usize, Self::Output)>;
+        Self::Output: Clone + Copy;
+    fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)>
+    where
+        Self::Output: Clone + Copy;
 }
 
-impl<'a, T: Copy> Enums<'a> for Vec<T> {
+impl<T: Clone + Copy> Enums for Vec<T> {
     type Output = T;
-    fn enums(&'a self) -> Vec<(usize, Self::Output)> {
+    fn enums(&self) -> Vec<(usize, Self::Output)> {
         self.iter().enumerate().map(|(i, &v)| (i, v)).collect()
     }
 
-    fn enums_start_at(&'a self, at: Starter) -> Vec<(usize, Self::Output)> {
+    fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)> {
         self.iter()
             .enumerate()
             .map(|(i, &v)| (i + at.0, v))
             .collect()
     }
 
-    fn enums_mut(&mut self) -> Vec<(usize, Self::Output)> {
-        self.iter_mut().enumerate().map(|(i, v)| (i, *v)).collect()
+    fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)> {
+        let mut result = Vec::with_capacity(self.len());
+        for (ind, value) in self.iter_mut().enumerate() {
+            result.push((ind, value))
+        }
+        result
     }
 }
 
-impl<'a, T: Copy> Enums<'a> for [T] {
+impl<T: Clone + Copy> Enums for [T] {
     type Output = T;
-    fn enums(&'a self) -> Vec<(usize, Self::Output)> {
+    fn enums(&self) -> Vec<(usize, Self::Output)> {
         self.iter().enumerate().map(|(i, &v)| (i, v)).collect()
     }
 
-    fn enums_start_at(&'a self, at: Starter) -> Vec<(usize, Self::Output)> {
+    fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)> {
         self.iter()
             .enumerate()
             .map(|(i, &v)| (i + at.0, v))
             .collect()
     }
 
-    fn enums_mut(&mut self) -> Vec<(usize, Self::Output)> {
-        self.iter_mut().enumerate().map(|(i, v)| (i, *v)).collect()
+    fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)> {
+        let mut result = Vec::with_capacity(self.len());
+        for (ind, value) in self.iter_mut().enumerate() {
+            result.push((ind, value))
+        }
+        result
     }
 }
 
