@@ -86,3 +86,9 @@ Further more, like enumerate function in python; you can change the starting ind
   4, odin
   5, c++
 ```
+
+In the enums_start_at method, a tuple struct is also provided that can be used as parameter for the method. It can be imported into scope like so
+```
+  use enums::enums::Starter
+```
+Then starter, methods namely: default, new and Starter(usize), where `usize` is any positive value from `0` to `usize::MAX`, can be used to customized the starting index. [See examples on API below]
