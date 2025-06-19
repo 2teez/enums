@@ -17,14 +17,14 @@ pub trait Enums {
     type Output;
     fn enums(&self) -> Vec<(usize, Self::Output)>
     where
-        Self::Output: Clone;
+        Self::Output: Clone + Copy;
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>
     where
-        Self::Output: Clone;
+        Self::Output: Clone + Copy;
     fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)>;
 }
 
-impl<T: Clone> Enums for Vec<T> {
+impl<T: Clone + Copy> Enums for Vec<T> {
     type Output = T;
     fn enums(&self) -> Vec<(usize, Self::Output)> {
         self.iter()
@@ -49,7 +49,7 @@ impl<T: Clone> Enums for Vec<T> {
     }
 }
 
-impl<T: Clone> Enums for [T] {
+impl<T: Clone + Copy> Enums for [T] {
     type Output = T;
     fn enums(&self) -> Vec<(usize, Self::Output)> {
         self.iter()
