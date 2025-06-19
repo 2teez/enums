@@ -18,6 +18,9 @@ pub trait Enums {
     fn enums(&self) -> Vec<(usize, Self::Output)>
     where
         Self::Output: Clone;
+
+    fn enums_iter(&self) -> Box<dyn Iterator<Item = (usize, &Self::Output)> + '_>;
+
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)>
     where
         Self::Output: Clone;
@@ -31,6 +34,10 @@ impl<T: Clone> Enums for Vec<T> {
             .enumerate()
             .map(|(i, v)| (i, v.clone()))
             .collect()
+    }
+
+    fn enums_iter(&self) -> Box<dyn Iterator<Item = (usize, &Self::Output)> + '_> {
+        Box::new(self.iter().enumerate())
     }
 
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)> {
@@ -52,6 +59,10 @@ impl<T: Clone> Enums for [T] {
             .enumerate()
             .map(|(i, v)| (i, v.clone()))
             .collect()
+    }
+
+    fn enums_iter(&self) -> Box<dyn Iterator<Item = (usize, &Self::Output)> + '_> {
+        Box::new(self.iter().enumerate())
     }
 
     fn enums_start_at(&self, at: Starter) -> Vec<(usize, Self::Output)> {
