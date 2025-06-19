@@ -159,3 +159,6 @@ let mut langs = vec![
 ```
 
 > The method `enums_start_at` has a parameter namely: `Starter`. And it can be used in the method as `Starter::new()` or `Starter::default()` or `Starter(<any-positive-number>)` to `usize::MAX`. The index of the starts from the positive number.
+
+### Versioning
+> The first publish version `0.1.5`, was based on `rust edition 2024`. The second publish version i.e version `0.1.6` will be based on `rust edition 2021` to accormodate a much large group.
