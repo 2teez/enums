@@ -11,7 +11,7 @@
 In the Cargo.toml file
 
     [dependancies]
-    arraylist = {git = "https://github.com/2teez/enums.git"}
+    arraylist = {git = "https://github.com/2teez/enums"}
 
 #### To Use in the src/main.rs file:
 ```
