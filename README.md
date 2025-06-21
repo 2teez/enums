@@ -181,11 +181,48 @@ for (i, item) in vec.enums_iter() {
 
 > _Nums_ Traits, namely so, primarily gets the indices from a collection as returns it as a collection. It does it using two methods: `nums` and `nums_starting_at`.
 
-    > 1. `nums`
+1. `nums`
 
-    _**fn nums(&self) -> Vec<Self::Output>**_
-    >
-    > `nums` returns a Vec of the `first elements` (i.e., the indices) from a collection of tuple-like items returned using `self.enums_iter()`. It maps over each (index, value) pair produced by the iterator and collects just the index (`.first()`) into a new vector. In effect, it extracts and returns all the positional indices of the original collection.
+_**fn nums(&self) -> Vec<Self::Output>**_
+>
+`nums` returns a Vec of the `first elements` (i.e., the indices) from a collection of tuple-like items returned using `self.enums_iter()`. It maps over each (index, value) pair produced by the iterator and collects just the index (`.first()`) into a new vector. In effect, it extracts and returns all the positional indices of the original collection.
+
+#### before nums
+```
+    // to get the indices
+    let mut indices = vec![];
+    let data = ["house", "bulb", "towel", "bath", "table"];
+    for (i, value) in data.iter().enumerate() {
+        indices.push(i)
+    }
+    println!("{:#?}", indices); // prints [0,1,2,3,4]
+    // OR
+    let one_lined_indices: Vec<u32> = data.iter().enumerate().map(|(i, _)| i as u32).collect();
+    println!("{:?}", one_lined_indices);
+```
+
+#### but with nums
+```
+    // to get the indices
+    // cleaner and better. Boilerplate code done away with.
+    let one_lined_indices = data.nums();
+    println!("{:?}", one_lined_indices);
+```
+
+
+2. `nums_starting_at`
+
+_**fn nums_starting_at(&self, at: Starter) -> Vec<Self::Output>**_
+
+>
+`nums_starting_at` returns a Vec of indices for the elements in the collection, but instead of starting from 0, it begins from the custom index provided by the `Starter` value (at). It uses `enums_start_at(at)` to enumerate the collection starting at that index, then go over each (index, value) pair to collect just the index part into a new vector.
+
+```
+    let custom_indices = one_lined_indices.nums_starting_at(6.into());
+    println!("{:?}", custom_indices);
+```
+
+Method *enums_start_at* couldn't make this possible, though it does something similar.
 
 
 ### Versioning
