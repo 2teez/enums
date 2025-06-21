@@ -5,6 +5,8 @@ on:
     branches:
       - main # Or your default branch name
 
+  workflow_dispatch:
+
 jobs:
   tester:
     runs-on: ubuntu-latest
