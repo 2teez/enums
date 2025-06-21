@@ -184,6 +184,8 @@ for (i, item) in vec.enums_iter() {
     > 1. `nums`
 
     _**fn nums(&self) -> Vec<Self::Output>**_
+    >
+    > `nums` returns a Vec of the `first elements` (i.e., the indices) from a collection of tuple-like items returned using `self.enums_iter()`. It maps over each (index, value) pair produced by the iterator and collects just the index (`.first()`) into a new vector. In effect, it extracts and returns all the positional indices of the original collection.
 
 
 ### Versioning
