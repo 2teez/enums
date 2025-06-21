@@ -175,7 +175,20 @@ for (i, item) in vec.enums_iter() {
 
 > The method `enums_start_at` has a parameter namely: `Starter`. And it can be used in the method as `Starter::new()` or `Starter::default()` or `Starter(<any-positive-number>)` to `usize::MAX`. The index of the starts from the positive number.
 
-### Versioning
-> The first publish version `0.1.5`, was based on `rust edition 2024`. The second publish version i.e version `0.1.6` will be based on `rust edition 2021` to accormodate a much large group.
+## Other Traits and Methods included.
 
-> Third publish version `0.2.0`, implements enums_iter; which returns iterator and the usage is left to the developer.
+### Nums
+
+> _Nums_ Traits, namely so, primarily gets the indices from a collection as returns it as a collection. It does it using two methods: `nums` and `nums_starting_at`.
+
+    > 1. `nums`
+
+    _**fn nums(&self) -> Vec<Self::Output>**_
+
+
+### Versioning
+> The first published version `0.1.5`, was based on `rust edition 2024`. The second publish version i.e version `0.1.6` will be based on `rust edition 2021` to accormodate a much large group.
+
+> Third published version `0.2.0`, implements enums_iter; which returns iterator and the usage is left to the developer.
+
+> The Fourth published version `0.4.0`, implements and includes two traits namely `Nums` and `Partition`. The methods these two traits gives are described are above.
