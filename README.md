@@ -219,10 +219,16 @@ _**fn nums_starting_at(&self, at: Starter) -> Vec<Self::Output>**_
 
 ```
     let custom_indices = one_lined_indices.nums_starting_at(6.into());
-    println!("{:?}", custom_indices);
+    println!("{:?}", custom_indices); // prints [6, 7, 8, 9, 10]
 ```
 
 Method *enums_start_at* couldn't make this possible, though it does something similar.
+
+
+### Partition
+
+_Partition_ trait provides two methods namely; `first()` and `second()`. These, as the name suggested provides the programmer with the first and second values.
+Instead of using the `<dot><number>`, using partition could be clearer and better.
 
 
 ### Versioning
