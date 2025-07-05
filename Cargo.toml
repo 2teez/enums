@@ -1,6 +1,6 @@
 [package]
 name = "enums"
-version = "0.5.0"
+version = "0.5.1"
 authors = ["timothy adigun <2teezrust@gmail.com>"]
 description = "Enumerate trait for vector and slice in rust. It abstracts chain methods like .iter().enumerate().collect() into a clean, reusable method also called enums like python enumerate."
 readme = "README.md"
