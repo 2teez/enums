@@ -57,6 +57,18 @@ impl<T: Clone> Enums for Vec<T> {
         self.iter_mut().enumerate().collect()
     }
 
+    /// check to_map function
+    /// ```
+    /// use std::collections::HashMap;
+    /// use enums::enums::Enums;
+    ///
+    /// let numbers = vec![23,56,90];
+    /// let mut hash = HashMap::new();
+    /// hash.insert(0, 23);
+    /// hash.insert(1, 56);
+    /// hash.insert(2, 90);
+    /// assert_eq!(numbers.to_map(), hash);
+    /// ```
     fn to_map(&self) -> HashMap<usize, Self::Output> {
         self.iter()
             .enumerate()
@@ -89,6 +101,18 @@ impl<T: Clone> Enums for [T] {
         self.iter_mut().enumerate().collect()
     }
 
+    /// check to_map function
+    /// ```
+    /// use std::collections::HashMap;
+    /// use enums::enums::Enums;
+    ///
+    /// let numbers = [23,56,90];
+    /// let mut hash = HashMap::new();
+    /// hash.insert(0, 23);
+    /// hash.insert(1, 56);
+    /// hash.insert(2, 90);
+    /// assert_eq!(numbers.to_map(), hash);
+    /// ```
     fn to_map(&self) -> HashMap<usize, Self::Output> {
         self.iter()
             .enumerate()
