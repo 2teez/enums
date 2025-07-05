@@ -175,6 +175,24 @@ for (i, item) in vec.enums_iter() {
 
 > The method `enums_start_at` has a parameter namely: `Starter`. And it can be used in the method as `Starter::new()` or `Starter::default()` or `Starter(<any-positive-number>)` to `usize::MAX`. The index of the starts from the positive number.
 
+
+5.   to_map
+
+> **_fn to_map(&self) -> HashMap<usize, Self::Output>_**
+>
+> `to_map` transforms an iterable collection to HashMap, where the keys are the indices of the elements (0, 1, 2, ...) and the values are clones of the elements in the collection.
+
+```
+    println!(
+        "{:?}",
+        "Hello, world!"
+            .to_string()
+            .split(", ")
+            .collect::<Vec<_>>()
+            .to_map()  // using the function to_map
+    ); // {0: "Hello", 1: "world!"}
+```
+
 ## Other Traits and Methods included.
 
 ### Nums
