@@ -1,4 +1,24 @@
+use enums::enums::Enums;
 use enums::nums::Nums;
+use std::collections::HashMap;
+
+#[test]
+fn test_to_map_function_vec() {
+    let numbers = vec![23, 56, 90];
+    let map = numbers.to_map();
+
+    let expected: HashMap<usize, _> = [(0, 23), (1, 56), (2, 90)].into_iter().collect();
+    assert_eq!(map, expected);
+}
+
+#[test]
+fn test_to_map_function_slice() {
+    let numbers = [23, 56, 90];
+    let map = numbers.to_map();
+
+    let expected: HashMap<usize, _> = [(0, 23), (1, 56), (2, 90)].into_iter().collect();
+    assert_eq!(map, expected);
+}
 
 #[test]
 fn test_getting_indices_for_empty_vec() {
