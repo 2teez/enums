@@ -237,3 +237,5 @@ Instead of using the `<dot><number>`, using partition could be clearer and bette
 > Third published version `0.2.0`, implements enums_iter; which returns iterator and the usage is left to the developer.
 
 > The Fourth published version `0.4.0`, implements and includes two traits namely `Nums` and `Partition`. The methods these two traits gives are described are above.
+
+> The Fifth published version `0.5.0`, added a function `to_map` to generate hashmap.
