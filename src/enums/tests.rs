@@ -87,3 +87,18 @@ fn test_vec_using_usize_max() {
         vec![(usize::MAX, 42)]
     );
 }
+
+#[test]
+fn gets_returned_hashmap() {
+    use std::collections::HashMap;
+
+    let langs = vec!["c", "c++", "zig-lang", "java", "rust"];
+    let got = langs.to_map();
+    let mut expected: HashMap<usize, &str> = HashMap::new();
+    expected.insert(0, "c");
+    expected.insert(1, "c++");
+    expected.insert(2, "zig-lang");
+    expected.insert(3, "java");
+    expected.insert(4, "rust");
+    assert_eq!(expected, got);
+}
