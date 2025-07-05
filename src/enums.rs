@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 #[derive(Clone, Copy, Debug)]
 pub struct Starter(usize);
 
@@ -27,6 +29,8 @@ pub trait Enums {
     where
         Self::Output: Clone;
     fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)>;
+
+    fn to_map(&self) -> HashMap<usize, Self::Output>;
 }
 
 impl<T: Clone> Enums for Vec<T> {
@@ -52,6 +56,13 @@ impl<T: Clone> Enums for Vec<T> {
     fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)> {
         self.iter_mut().enumerate().collect()
     }
+
+    fn to_map(&self) -> HashMap<usize, Self::Output> {
+        self.iter()
+            .enumerate()
+            .map(|(i, v)| (i, v.clone()))
+            .collect::<HashMap<_, _>>()
+    }
 }
 
 impl<T: Clone> Enums for [T] {
@@ -76,6 +87,13 @@ impl<T: Clone> Enums for [T] {
 
     fn enums_mut(&mut self) -> Vec<(usize, &mut Self::Output)> {
         self.iter_mut().enumerate().collect()
+    }
+
+    fn to_map(&self) -> HashMap<usize, Self::Output> {
+        self.iter()
+            .enumerate()
+            .map(|(i, v)| (i, v.clone()))
+            .collect::<HashMap<_, _>>()
     }
 }
 
